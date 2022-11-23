@@ -1,0 +1,74 @@
+div {
+    background-color: rgb(206, 210, 223);
+  }
+
+.wrapper {
+    background-color: red;
+    max-width: 700px;
+    border-radius: 10px;
+    margin: 50px auto;
+    padding: 50px 40px;
+    box-shadow: 40px 20px 80px rgb(190, 181, 181);
+    width: 100% !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+h4 {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+    justify-content: center;  
+    color: #97c9f5;
+    font-style: italic;
+    border-radius: 20px;
+}
+
+
+
+.abs-center {
+ 
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+ 
+    
+  }
+
+  
+/* 
+  .abs1-center{
+    padding: flex;
+    border: 1px solid white;
+    margin-top: 250px;
+    margin-left: 170px;
+    width: 100em;
+    border-radius: 20px;
+    
+  } */
+
+  
+ .col{
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+    border-radius: 20px;
+ }
+  
+ .bt1{
+    border-radius: 5px;
+    background-color: rgba(48, 166, 245, 0.603);
+    margin-right: 15px;
+ }
+
+ .bt2{
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+ }
+
+ .table{
+    margin-right: 50px;
+ }

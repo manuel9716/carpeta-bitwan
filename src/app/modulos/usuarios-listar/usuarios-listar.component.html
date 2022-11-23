@@ -1,0 +1,86 @@
+<div class="container-md h-100 bg-transparent">
+
+
+  <div class="row px-0 h-100 d-flex align-items-center justify-content-center p-3 m-auto h-100 bg-transparent">
+
+    <div class="col-12 bg-white p-3 rounded-3">
+      <form [formGroup]="formCrear">
+        <div class="abs-center rounded-3 p-6">
+          <div class="row w-75 mt-3">
+            <div class="input-group me-2 col">
+              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+              <input formControlName="Nombre" type="nombre" class="form-control" id="Nombre" placeholder="Nombre">
+            </div>
+            <div class="input-group me-2 col">
+              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+              <input formControlName="Apellido" id="Apellido" class="form-control" placeholder="Apellido">
+            </div>
+            <div class="input-group me-2 col">
+              <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+              <input formControlName="Telefono" type="telefono" id="Telefono" class="form-control"
+                placeholder="Telefono">
+            </div>
+            <div class="input-group me-2 col">
+              <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+              <input formControlName="Email" type="email" id="Email" class="form-control" placeholder="Email">
+            </div>
+            <br>
+            <div class="text-center pt-1 my-3 pb-1">
+              <button class="btn btn-primary" (click)="guardar()" type="submit">Registrar</button>
+            </div>
+          </div>
+        </div>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">DataBase</th>
+              <th scope="col" class="text-center">Registro</th>
+              <th scope="col" class="text-center">Nombre</th>
+              <th scope="col" class="text-center">Apellido</th>
+              <th scope="col" class="text-center">Email</th>
+              <th scope="col" class="text-center">Telefono</th>
+              <th scope="col" class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="text-center">MariaDB</th>
+              <th scope="row" class="text-center">{{respuesta.Id}}</th>
+              <td class="text-center">{{respuesta.Nombre}}</td>
+              <td class="text-center">{{respuesta.Apellido}}</td>
+              <td class="text-center">{{respuesta.Email}}</td>
+              <td class="text-center">{{respuesta.Telefono}}</td>
+              <td>
+                <div class="d-flex justify-content-center bg-transparent">
+                  <button type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
+                  <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              </td>
+
+
+            </tr>
+            <tr>
+              <th scope="row" class="text-center">SQLServer</th>
+              <th scope="row" class="text-center">{{respuesta2.usuarioId}}</th>
+              <td class="text-center">{{respuesta2.nombre}}</td>
+              <td class="text-center">{{respuesta2.apellido}}</td>
+              <td class="text-center">{{respuesta2.email}}</td>
+              <td class="text-center">{{respuesta2.telefono}}</td>
+              <td>
+                <div class="d-flex justify-content-center bg-transparent">
+                  <button type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
+                  <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
