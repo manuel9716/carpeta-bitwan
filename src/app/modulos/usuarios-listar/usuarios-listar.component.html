@@ -4,31 +4,86 @@
   <div class="row px-0 h-100 d-flex align-items-center justify-content-center p-3 m-auto h-100 bg-transparent">
 
     <div class="col-12 bg-white p-3 rounded-3">
-      <form [formGroup]="formCrear">
+      <form [formGroup]="formCrear" novalidate>
         <div class="abs-center rounded-3 p-6">
-          <div class="row w-75 mt-3">
+
+          <div *ngIf="editar == 0" class="row w-75 mt-3">
             <div class="input-group me-2 col">
-              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-              <input formControlName="Nombre" type="nombre" class="form-control" id="Nombre" placeholder="Nombre">
+              <span class="input-group-text" for="validationCustom01"><i class="fa-solid fa-user"></i></span>
+              <input formControlName="Nombre" type="nombre" class="form-control" id="Nombre" placeholder="Nombre" >
+              <div class="my-feedback" *ngIf="formCrear.get('Nombre')?.errors?.required && formCrear.get('Nombre').dirty">Requerido</div>
             </div>
+            <br>
+            
             <div class="input-group me-2 col">
               <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
               <input formControlName="Apellido" id="Apellido" class="form-control" placeholder="Apellido">
+              <div class="my-feedback" *ngIf="formCrear.get('Apellido')?.errors?.required && formCrear.get('Apellido').dirty">Requerido</div>
             </div>
+            
             <div class="input-group me-2 col">
               <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-              <input formControlName="Telefono" type="telefono" id="Telefono" class="form-control"
-                placeholder="Telefono">
+              <input formControlName="Telefono" type="telefono" id="Telefono" class="form-control" placeholder="Telefono" >
+              <div class="my-feedback" *ngIf="formCrear.get('Telefono')?.errors?.required && formCrear.get('Telefono').dirty">Requerido</div>
+            </div>
+            
+            <!-- <span *ngIf="formCrear.get('Telefono').invalid">Esto tiene error</span> -->
+            <!-- <span *ngIf="formCrear.get('Telefono')?.errors?.required && formCrear.get('Telefono')?.errors?.maxLength">Este campo acepta max 15 caracteres</span> -->
+            <!-- <span *ngIf="formCrear.get('Telefono').dirty && formCrear.get('Telefono').hasError('maxLength')">Este campo acepta max 15 caracteres</span> -->
+            <div class="input-group me-2 col">
+              <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+              <input formControlName="Email" type="email" id="Email" class="form-control" placeholder="Email" >
+              <div class="my-feedback" *ngIf="formCrear.get('Email')?.errors?.required && formCrear.get('Email').dirty">Requerido</div>
+             </div>
+            
+            <br>
+            <div class="text-center pt-1 my-2 pb-1">
+              <input class="text-center pt-1 my-2 pb-1" type="checkbox" value="" id="invalidCheck" (change)="confirmar(invalidchecbox.checked)" #invalidchecbox>
+              <label class="text-center pt-1 my-2 pb-1" for="invalidCheck">
+                Acepta los términos y condiciones
+              </label>
+              <br>
+              <button class="btn btn-primary" (click)="guardar()" [disabled]="!formCrear.valid">Registrar</button>
+              <p class="warning" id="warning"></p>
+            </div>
+          </div>
+          <div *ngIf="editar == 1" class="row w-75 mt-3">
+            <form [formGroup]="formActualizar" novalidate>
+            
+            <div class="input-group me-2 col">
+              <span class="input-group-text" for="validationCustom01"><i class="fa-solid fa-user"></i></span>
+              <input formControlName="Nombre" type="nombre" class="form-control" id="Nombre" placeholder="Nombre" >
+              <div class="my-feedback" *ngIf="formCrear.get('Nombre')?.errors?.required && formActualizar.get('Nombre').dirty">Requerido</div>
+            </div>
+            <br>
+            
+            <div class="input-group me-2 col">
+              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+              <input formControlName="Apellido" id="Apellido" class="form-control" placeholder="Apellido">
+              <div class="my-feedback" *ngIf="formCrear.get('Apellido')?.errors?.required && formActualizar.get('Apellido').dirty">Requerido</div>
+            </div>
+            
+            <div class="input-group me-2 col">
+              <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+              <input formControlName="Telefono" type="telefono" id="Telefono" class="form-control" placeholder="Telefono" >
+              <div class="my-feedback" *ngIf="formCrear.get('Telefono')?.errors?.required && formActualizar.get('Telefono').dirty">Requerido</div>
             </div>
             <div class="input-group me-2 col">
               <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-              <input formControlName="Email" type="email" id="Email" class="form-control" placeholder="Email">
-            </div>
+              <input formControlName="Email" type="email" id="Email" class="form-control" placeholder="Email" >
+              <div class="my-feedback" *ngIf="formCrear.get('Email')?.errors?.required && formActualizar.get('Email').dirty">Requerido</div>
+             </div>
+            
             <br>
-            <div class="text-center pt-1 my-3 pb-1">
-              <button class="btn btn-primary" (click)="guardar()" type="submit">Registrar</button>
+            <div class="text-center pt-1 my-2 pb-1">
+              <input class="text-center pt-1 my-2 pb-1" type="checkbox" value="" id="invalidCheck" (change)="confirmar(invalidchecbox.checked)" #invalidchecbox>
+              <br>
+              <button class="btn btn-primary" (click)="actualizar(); editar = 0" [disabled]="!formActualizar.valid">Actualizar</button>
+              <p class="warning" id="warning"></p>
             </div>
+          </form>
           </div>
+        
         </div>
         <table class="table mt-3">
           <thead>
@@ -68,7 +123,7 @@
               <td class="text-center">{{respuesta2.telefono}}</td>
               <td>
                 <div class="d-flex justify-content-center bg-transparent">
-                  <button type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
+                  <button (click)="editar = 1" type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
                   <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                 </div>
               </td>

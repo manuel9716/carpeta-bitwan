@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/servicios/servicios.service';
+
+const nombre = document.getElementById("Nombre")
 
 @Component({
   selector: 'app-usuarios-listar',
@@ -13,21 +15,38 @@ export class UsuariosListarComponent implements OnInit {
   respuesta: any = 0;
   respuesta2: any = 0;
   formCrear: FormGroup;
+  formActualizar: FormGroup;
+  editar: any = 0;
+  
 
   constructor(
     private serviciosService: ServiciosService,
     private _builder: FormBuilder,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService
-  ) {}
+    
+  ) {
+    const validatortext = [Validators.required, Validators.maxLength(50), Validators.minLength(2)]
+    this.formActualizar = this._builder.group({
+      Nombre: ['',validatortext],
+      Apellido: ['',validatortext],
+      Email: ['',validatortext],
+      Telefono: ['',validatortext],
+  })
+}
+
 
   ngOnInit(): void {
+    const validatortext = [Validators.required, Validators.maxLength(50), Validators.minLength(2)]
     this.formCrear = this._builder.group({
-      Nombre: [''],
-      Apellido: [''],
-      Email: [''],
-      Telefono: [''],
+      Nombre: ['',validatortext],
+      Apellido: ['',validatortext],
+      Email: ['',validatortext],
+      Telefono: ['',validatortext],
+      // Email: ['',[Validators.required, Validators.email]],
+      // Telefono: ['',[Validators.required, Validators.maxLength(10), Validators.minLength(2)]],
     });
+    // this.formCrear.valueChanges.subscribe((value)=>console.log(this.formCrear));
     this.getUsuarios();
   }
 
@@ -36,16 +55,26 @@ export class UsuariosListarComponent implements OnInit {
     this.serviciosService.ConsultarUsuariosBack1().subscribe((resp: any) => {
       this.respuesta = resp.data[0];
       this.serviciosService.ConsultarUsuariosBack2().subscribe((resp: any) => {
-        console.log(resp.result.usuarios);
+      console.log(resp.result.usuarios);
         var size = resp.result.usuarios.length;
         this.respuesta2 = resp.result.usuarios[size - 1];
-        
+        this.formActualizar.setValue
+        ({
+        Nombre: this.respuesta2.nombre,
+        Apellido: this.respuesta2.apellido ,
+        Email: this.respuesta2.email,
+        Telefono: this.respuesta2.telefono
+        })
           this.spinner.hide();
         
       });
     });
   }
+  confirmar(checked: boolean): void{
+    
+  }
   guardar(): void {
+    
     this.spinner.show();
     const body = Object.assign({}, this.formCrear.value);
     this.serviciosService.CrearUsuariosDual(body).subscribe((resp: any) => {
@@ -61,5 +90,15 @@ export class UsuariosListarComponent implements OnInit {
         this.spinner.hide();
       }, 2000);
     });
+  }
+
+  actualizar(): void{
+
+    this.spinner.show();
+    this.respuesta
+    const body = Object.assign({}, this.formActualizar.value);
+    this.serviciosService.ActualizarUsuarios(body).subscribe((resp: any) =>{
+      
+    })
   }
 }

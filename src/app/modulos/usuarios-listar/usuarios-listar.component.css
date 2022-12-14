@@ -16,7 +16,13 @@ div {
     transform: translate(-50%, -50%);
 }
 
-
+.warning{
+   width: 200px;
+   text-align: center;
+   margin: auto;
+   color: #dc3545;
+   padding-top: 20px;
+}
 h4 {
     font-family: 'Kaushan Script', cursive;
     font-size: 2rem;
@@ -27,6 +33,15 @@ h4 {
     border-radius: 20px;
 }
 
+.my-feedback {
+   display: flex !important;
+   position: absolute !important;
+   width: 100% !important;
+   margin-top: 2.3rem !important;
+   font-size: .875em !important;
+   color: #dc3545 !important;
+   flex-direction: column !important;
+}
 
 
 .abs-center {

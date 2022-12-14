@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http'
 export class ServiciosService {
 
   servidor='http://localhost:4001'
-  //servidor2='http://localhost:5262/api'
+  servidor2='http://localhost:5262/api/usuarios'
 
   constructor(private servicio:HttpClient) { }
   
@@ -27,4 +27,8 @@ export class ServiciosService {
  CrearUsuariosDual(body){
    return this.servicio.post(this.servidor + '/postdual', body )
   }
+
+  ActualizarUsuarios(body){
+    return this.servicio.put(this.servidor2 + '/actualizar', body )
+   }
 }
