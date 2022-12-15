@@ -33,33 +33,26 @@
               <input formControlName="Email" type="email" id="Email" class="form-control" placeholder="Email" >
               <div class="my-feedback" *ngIf="formCrear.get('Email')?.errors?.required && formCrear.get('Email').dirty">Requerido</div>
              </div>
-            
             <br>
             <div class="text-center pt-1 my-2 pb-1">
-              
               <br>
               <button class="btn btn-primary" (click)="guardar()" [disabled]="!formCrear.valid">Registrar</button>
               <p class="warning" id="warning"></p>
             </div>
           </div>
-          
           <div *ngIf="editar == 1" class="row w-75 mt-3">
             <form [formGroup]="formActualizar" novalidate>
             <div class="abs-center rounded-2 p-6">
-            
             <div class="input-group me-2 col">
               <span class="input-group-text" for="validationCustom01"><i class="fa-solid fa-user"></i></span>
               <input formControlName="Nombre" type="nombre" class="form-control" id="Nombre" placeholder="Nombre" >
               <div class="my-feedback" *ngIf="formActualizar.get('Nombre')?.errors?.required && formActualizar.get('Nombre').dirty">Requerido</div>
             </div>
-            
-            
             <div class="input-group me-2 col">
               <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
               <input formControlName="Apellido" id="Apellido" class="form-control" placeholder="Apellido">
               <div class="my-feedback" *ngIf="formActualizar.get('Apellido')?.errors?.required && formActualizar.get('Apellido').dirty">Requerido</div>
             </div>
-            
             <div class="input-group me-2 col">
               <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
               <input formControlName="Telefono" type="telefono" id="Telefono" class="form-control" placeholder="Telefono" >
@@ -69,7 +62,7 @@
               <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
               <input formControlName="Email" type="email" id="Email" class="form-control" placeholder="Email" >
               <div class="my-feedback" *ngIf="formActualizar.get('Email')?.errors?.required && formActualizar.get('Email').dirty">Requerido</div>
-             </div>
+            </div>
             </div>
             <br>
             <div class="text-center pt-1 my-2 pb-1">

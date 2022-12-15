@@ -28,6 +28,7 @@ export class UsuariosListarComponent implements OnInit {
   ) {
     const validatortext = [Validators.required, Validators.maxLength(50), Validators.minLength(2)]
     this.formActualizar = this._builder.group({
+      UsuarioId: ['',validatortext],
       Nombre: ['',validatortext],
       Apellido: ['',validatortext],
       Email: ['',validatortext],
@@ -39,6 +40,7 @@ export class UsuariosListarComponent implements OnInit {
   ngOnInit(): void {
     const validatortext = [Validators.required, Validators.maxLength(50), Validators.minLength(2)]
     this.formCrear = this._builder.group({
+      
       Nombre: ['',validatortext],
       Apellido: ['',validatortext],
       Email: ['',validatortext],
@@ -60,8 +62,9 @@ export class UsuariosListarComponent implements OnInit {
         this.respuesta2 = resp.result.usuarios[size - 1];
         this.formActualizar.setValue
         ({
+        UsuarioId: this.respuesta2.usuarioId,
         Nombre: this.respuesta2.nombre,
-        Apellido: this.respuesta2.apellido ,
+        Apellido: this.respuesta2.apellido,
         Email: this.respuesta2.email,
         Telefono: this.respuesta2.telefono
         })
@@ -98,7 +101,17 @@ export class UsuariosListarComponent implements OnInit {
     this.respuesta
     const body = Object.assign({}, this.formActualizar.value);
     this.serviciosService.ActualizarUsuarios(body).subscribe((resp: any) =>{
-      
+      if (resp.status == 200) {
+        this.toaster.success('Usuario Actualizado');
+        this.getUsuarios();
+        this.formActualizar.reset();
+      } else {
+        this.toaster.error('Fallo');
+      }
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+      }, 2000);
     })
   }
 }

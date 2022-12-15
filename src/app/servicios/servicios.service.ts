@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http'
 export class ServiciosService {
 
   servidor='http://localhost:4001'
-  servidor2='http://localhost:5262/api/usuarios'
+  //servidor2='http://localhost:5262/api/usuarios'
 
   constructor(private servicio:HttpClient) { }
   
@@ -29,6 +29,6 @@ export class ServiciosService {
   }
 
   ActualizarUsuarios(body){
-    return this.servicio.put(this.servidor2 + '/actualizar', body )
+    return this.servicio.put(this.servidor + '/api-sql/usuario-actualizar', body )
    }
 }
