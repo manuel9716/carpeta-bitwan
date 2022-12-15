@@ -10,13 +10,15 @@ import { UsuariosListarComponent } from './modulos/usuarios-listar/usuarios-list
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoginComponent } from './modulos/login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuariosBuscarComponent,
-    UsuariosListarComponent
+    UsuariosListarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

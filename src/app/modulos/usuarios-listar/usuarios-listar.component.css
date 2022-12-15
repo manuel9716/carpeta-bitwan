@@ -53,7 +53,11 @@ h4 {
     
   }
 
-  
+#login{
+   margin: auto;
+   margin-left: 1500px;
+   
+}
 /* 
   .abs1-center{
     padding: flex;
