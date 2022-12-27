@@ -27,8 +27,19 @@ export class ServiciosService {
  CrearUsuariosDual(body){
    return this.servicio.post(this.servidor + '/postdual', body )
   }
+  ActualizarUsuariosBack1(body){
+    return this.servicio.put(this.servidor + '/usuarios', body )
+   }
 
-  ActualizarUsuarios(body){
+  ActualizarUsuariosBack2(body){
     return this.servicio.put(this.servidor + '/api-sql/usuario-actualizar', body )
+   }
+
+   DeleteUsuariosBack1(id){
+    return this.servicio.delete(this.servidor + '/usuarios/' + id )
+   }
+
+   DeleteUsuariosBack2(id){
+    return this.servicio.delete(this.servidor + '/api-sql/usuario-eliminar/'+ id )
    }
 }

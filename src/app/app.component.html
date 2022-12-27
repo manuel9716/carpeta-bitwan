@@ -1,3 +1,10 @@
-<ngx-spinner type="square-jelly-box" color = "#53a6f4"></ngx-spinner>
-<router-outlet></router-outlet>
+
+<div *ngIf="!this.login">
+    <app-login></app-login>
+</div>
+<div *ngIf="login">
+    <ngx-spinner type="square-jelly-box" color = "#53a6f4"></ngx-spinner>
+    <router-outlet></router-outlet>
+</div>
+
 

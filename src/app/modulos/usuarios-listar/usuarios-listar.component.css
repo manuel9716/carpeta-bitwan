@@ -58,6 +58,11 @@ h4 {
    margin-left: 1500px;
    
 }
+
+.padre{
+   margin: auto;
+   margin-top: 10%;
+}
 /* 
   .abs1-center{
     padding: flex;

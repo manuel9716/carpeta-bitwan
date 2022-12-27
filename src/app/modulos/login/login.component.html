@@ -1,17 +1,23 @@
 <div class="wrapper bg-white">
     
     <div class="h2 text-center">Login</div>
-    <form class="pt-3" #forma="ngForm" autocomplete="on">
+    <form class="pt-3" (ngSubmit)="login(forma)" #forma="ngForm" autocomplete="on">
         <div class="form-group py-2">
             <div class="input-field"> 
                 <span class="fa-solid fa-child-reaching p-2"></span> 
                 <input class="form-control"
                        type="text"
                        name="alias"
-                       
+                       #alias="ngModel"
+                       [class.is-invalid]="alias.invalid && alias.touched"
+                       required
                        placeholder="@"
+                       [(ngModel)]="usuario.alias"
                        placeholder="Usuario"> 
             </div>
+            <small *ngIf="alias.invalid && alias.touched" class="form-text text-danger"> 
+                ingrese su usuario
+            </small>
             
         </div>
         <div class="form-group py-1 pb-2">
@@ -20,15 +26,24 @@
                 <input class="form-control"
                        type="password"
                        name="contrasena"
-                       
+                       [class.is-invalid]="passWord.invalid && passWord.touched"
+                       required
+                       #passWord="ngModel"
+                       [(ngModel)]="usuario.password"
                        id="inputPassword"
-                       placeholder="Contraseña"> 
+                       placeholder="Ingrese su contraseña"> 
             </div>
+            <small *ngIf="passWord.invalid && passWord.touched" class="text-danger">
+                Ingrese su contraseña
+            </small> 
            
         </div>
         <div class="d-grid gap-2 col-6 mx-auto">
-            <a class="btn btn-primary mt-3" type="button">Ingresar</a>
-            <a class="btn btn-primary"  href="">Registro</a>
+            <button class="btn btn-primary mt-3" type="submit">Ingresar</button>
+            <a class="btn bg-white text-muted btn-sm" (click)="myFunction()">  
+                <i  class="fa fa-eye" aria-hidden="true"></i>
+            </a>
+
           </div>
         
        

@@ -1,5 +1,5 @@
 
-<div class="container-md h-100 bg-transparent">
+<div class="padre container-md h-100 bg-transparent ">
   
     <div class="row px-0 h-90 d-flex align-items-center justify-content-center p-3 m-auto h-100 bg-transparent">
      
@@ -89,15 +89,15 @@
           <tbody>
             <tr>
               <th scope="row" class="text-center">MariaDB</th>
-              <th scope="row" class="text-center">{{respuesta.Id}}</th>
-              <td class="text-center">{{respuesta.Nombre}}</td>
-              <td class="text-center">{{respuesta.Apellido}}</td>
-              <td class="text-center">{{respuesta.Email}}</td>
-              <td class="text-center">{{respuesta.Telefono}}</td>
+              <th scope="row" class="text-center">{{respuesta?.Id}}</th>
+              <td class="text-center">{{respuesta?.Nombre}}</td>
+              <td class="text-center">{{respuesta?.Apellido}}</td>
+              <td class="text-center">{{respuesta?.Email}}</td>
+              <td class="text-center">{{respuesta?.Telefono}}</td>
               <td>
                 <div class="d-flex justify-content-center bg-transparent">
                   <button (click)="editar = 1" type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
-                  <button (click)="editar = 0" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                  <button (click)="borrarback1(respuesta?.Id)" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                 </div>
               </td>
 
@@ -105,15 +105,15 @@
             </tr>
             <tr>
               <th scope="row" class="text-center">SQLServer</th>
-              <th scope="row" class="text-center">{{respuesta2.usuarioId}}</th>
-              <td class="text-center">{{respuesta2.nombre}}</td>
-              <td class="text-center">{{respuesta2.apellido}}</td>
-              <td class="text-center">{{respuesta2.email}}</td>
-              <td class="text-center">{{respuesta2.telefono}}</td>
+              <th scope="row" class="text-center">{{respuesta2?.usuarioId}}</th>
+              <td class="text-center">{{respuesta2?.nombre}}</td>
+              <td class="text-center">{{respuesta2?.apellido}}</td>
+              <td class="text-center">{{respuesta2?.email}}</td>
+              <td class="text-center">{{respuesta2?.telefono}}</td>
               <td>
                 <div class="d-flex justify-content-center bg-transparent">
                   <button (click)="editar = 1" type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
-                  <button (click)="editar = 0" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                  <button (click)="borrarback2(respuesta2?.usuarioId)" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                 </div>
               </td>
             </tr>
@@ -121,7 +121,7 @@
           </tbody>
         </table>
         <div class="text-center bg-transparent">
-          <a class="btn btn-primary"  href="login">Volver</a>
+          <a class="btn btn-primary"  (click)="salir()">cerrar sesión</a>
         </div>
 
       </form>

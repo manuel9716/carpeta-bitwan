@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/servicios/servicios.service';
+import { LoginService } from 'src/app/servicios/login.service';
+
 
 const nombre = document.getElementById("Nombre")
 
@@ -23,7 +25,8 @@ export class UsuariosListarComponent implements OnInit {
     private serviciosService: ServiciosService,
     private _builder: FormBuilder,
     private toaster: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private loginService: LoginService
     
   ) {
     const validatortext = [Validators.required, Validators.maxLength(50), Validators.minLength(2)]
@@ -57,19 +60,21 @@ export class UsuariosListarComponent implements OnInit {
     this.serviciosService.ConsultarUsuariosBack1().subscribe((resp: any) => {
       this.respuesta = resp.data[0];
       this.serviciosService.ConsultarUsuariosBack2().subscribe((resp: any) => {
-      console.log(resp.result.usuarios);
+      
         var size = resp.result.usuarios.length;
         this.respuesta2 = resp.result.usuarios[size - 1];
+        if (this.respuesta2){
         this.formActualizar.setValue
         ({
-        UsuarioId: this.respuesta2.usuarioId,
-        Nombre: this.respuesta2.nombre,
-        Apellido: this.respuesta2.apellido,
-        Email: this.respuesta2.email,
-        Telefono: this.respuesta2.telefono
+        UsuarioId: this.respuesta2?.usuarioId,
+        Nombre: this.respuesta2?.nombre,
+        Apellido: this.respuesta2?.apellido,
+        Email: this.respuesta2?.email,
+        Telefono: this.respuesta2?.telefono
         })
+      }
           this.spinner.hide();
-        
+      
       });
     });
   }
@@ -95,12 +100,27 @@ export class UsuariosListarComponent implements OnInit {
     });
   }
 
+  borrarback1(id){
+    this.serviciosService.DeleteUsuariosBack1(id).subscribe(res=>{
+      console.log(res)
+      this.actualizar()
+    })
+  }
+  borrarback2(id){
+    this.serviciosService.DeleteUsuariosBack2(id).subscribe(res=>{
+      console.log(res)
+      this.actualizar()
+    })
+  }
+  salir(){
+    this.loginService.logout();    
+  }
   actualizar(): void{
 
     this.spinner.show();
     this.respuesta
     const body = Object.assign({}, this.formActualizar.value);
-    this.serviciosService.ActualizarUsuarios(body).subscribe((resp: any) =>{
+    this.serviciosService.ActualizarUsuariosBack2(body).subscribe((resp: any) =>{
       if (resp.status == 200) {
         this.toaster.success('Usuario Actualizado');
         this.getUsuarios();
