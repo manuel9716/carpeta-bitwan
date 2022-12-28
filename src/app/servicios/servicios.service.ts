@@ -28,7 +28,7 @@ export class ServiciosService {
    return this.servicio.post(this.servidor + '/postdual', body )
   }
   ActualizarUsuariosBack1(body){
-    return this.servicio.put(this.servidor + '/usuarios', body )
+    return this.servicio.put(this.servidor + '/actualizar', body )
    }
 
   ActualizarUsuariosBack2(body){

@@ -40,6 +40,8 @@
               <p class="warning" id="warning"></p>
             </div>
           </div>
+
+
           <div *ngIf="editar == 1" class="row w-75 mt-3">
             <form [formGroup]="formActualizar" novalidate>
             <div class="abs-center rounded-2 p-6">
@@ -88,7 +90,7 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row" class="text-center">MariaDB</th>
+              <th scope="row" class="text-center">SQL-MariaDB</th>
               <th scope="row" class="text-center">{{respuesta?.Id}}</th>
               <td class="text-center">{{respuesta?.Nombre}}</td>
               <td class="text-center">{{respuesta?.Apellido}}</td>
@@ -97,13 +99,13 @@
               <td>
                 <div class="d-flex justify-content-center bg-transparent">
                   <button (click)="editar = 1" type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
-                  <button (click)="borrarback1(respuesta?.Id)" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                  <button (click)="borrarback1(respuesta?.Id, respuesta2?.usuarioId) " type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                 </div>
               </td>
 
 
             </tr>
-            <tr>
+            <!-- <tr>
               <th scope="row" class="text-center">SQLServer</th>
               <th scope="row" class="text-center">{{respuesta2?.usuarioId}}</th>
               <td class="text-center">{{respuesta2?.nombre}}</td>
@@ -112,11 +114,11 @@
               <td class="text-center">{{respuesta2?.telefono}}</td>
               <td>
                 <div class="d-flex justify-content-center bg-transparent">
-                  <button (click)="editar = 1" type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
-                  <button (click)="borrarback2(respuesta2?.usuarioId)" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                  <button (click)="editar = 2" type="submit" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pencil"></i></button>
+                  <button (click)="borrarback2(respuesta2?.usuarioId);borrarback1(respuesta?.Id) " type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                 </div>
               </td>
-            </tr>
+            </tr> -->
 
           </tbody>
         </table>
